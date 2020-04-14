@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var models = require('../models/index');
-const barangController = require('../controllers').barang;
+// var models = require('../models/index');
+const barangController = require('../sequelize/controllers').barang;
 
 /* GET users listing. */
 router.get('/', barangController.list);
