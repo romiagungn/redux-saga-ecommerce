@@ -1,19 +1,19 @@
-const barang = require('../models').barang;
+const product = require('../models').barang;
 
 module.exports = {
     list(req, res) {
-        return barang
+        return product
             .findAll({
                 include: [],
                 order: [
                     ['createdAt', 'DESC'],
                 ],
             })
-            .then((barang) => res.status(200).send(barang))
+            .then((product) => res.status(200).send(product))
             .catch((error) => { res.send(error); });
     },
     add(req, res) {
-        return barang
+        return product
             .create({
                 title: req.body.title,
                 rate: req.body.rate,
@@ -22,44 +22,44 @@ module.exports = {
                 brand: req.body.brand,
                 detail_product: req.body.detail_product
             })
-            .then((barang) => res.status(200).send(barang))
+            .then((product) => res.status(200).send(product))
             .catch((error) => res.send(error));
     },
     update(req, res) {
-        return barang
+        return product
             .findByPk(req.params.id)
-            .then(barang => {
-                if (!barang) {
+            .then(product => {
+                if (!product) {
                     return res.status(404).send({
-                        message: 'barang Not Found',
+                        message: 'product Not Found',
                     });
                 }
-                return barang
+                return product
                     .update({
-                        title: req.body.title || barang.title,
-                        rate: req.body.rate || barang.rate,
-                        description: req.body.description || barang.description,
-                        price: req.body.price || barang.price,
-                        brand: req.body.brang || barang.brand,
-                        detail_product: req.body.detail_product || barang.detail_product,
+                        title: req.body.title || product.title,
+                        rate: req.body.rate || product.rate,
+                        description: req.body.description || product.description,
+                        price: req.body.price || product.price,
+                        brand: req.body.brang || product.brand,
+                        detail_product: req.body.detail_product || product.detail_product,
                     })
-                    .then((barang) => res.status(200).send(barang))
+                    .then((product) => res.status(200).send(product))
                     .catch((error) => res.send(error));
             })
             .catch((error) => res.send(error));
     },
     delete(req, res) {
-        return barang
+        return product
             .findByPk(req.params.id)
-            .then(barang => {
-                if (!barang) {
+            .then(product => {
+                if (!product) {
                     return res.status(400).send({
-                        message: 'barang Not Found',
+                        message: 'product Not Found',
                     });
                 }
-                return barang
+                return product
                     .destroy()
-                    .then((barang) => res.status(200).send(barang))
+                    .then((product) => res.status(200).send(product))
                     .catch((error) => res.send(error));
             })
             .catch((error) => res.send(error));

@@ -1,26 +1,19 @@
+
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Router, Route, Switch } from 'react-router-dom';
+import history from './history';
+import Box from './component/Box';
+import FromAdd from './container/FromAdd';
+import Detail_product from './component/Detail_product'
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Router history={history}>
+      <Switch>
+        <Route exact path="/" component={Box} />
+        <Route path="/add" component={FromAdd} />
+        <Route path="/detail" component={Detail_product} />
+      </Switch>
+    </Router>
+  )
 }
-
-export default App;
