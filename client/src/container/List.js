@@ -10,8 +10,8 @@ class List extends Component {
     }
 
     render() {
-        console.log(this.props.product, 'ini item loh')
-        const listItems = this.props.product.map((item, index) =>
+        console.log(this.props.data, 'ini item loh')
+        const listItems = this.props.data.map((item, index) => 
             <Item key={index} product={{ ...item }} />
         );
 
@@ -34,7 +34,7 @@ class List extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    product: state.product
+    data: state.product
 })
 
 const mapDispatchToProps = (dispatch) => ({

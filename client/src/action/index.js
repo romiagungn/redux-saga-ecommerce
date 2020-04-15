@@ -16,20 +16,21 @@ export const loadProduct = () => ({
 
 // start add Product data
 
-export const addProductSuccess = () => ({
-    type: 'ADD_PRODUCT_SUCCESS',
+export const addProductSuccess = (product) => ({
+    type: 'POST_PRODUCT_SUCCESS',
+    product
 })
 
-export const addProductFailure = (id) => ({
-    type: 'ADD_PRODUCT_FAILURE', id
+export const addProductFailure = () => ({
+    type: 'POST_PRODUCT_FAILURE'
 })
 
-export const addProductRedux = (title, description, brand, price, detail_product) => ({
-    type: 'ADD_PRODUCT', title, description, brand, price, detail_product
+export const addProductRedux = (title, rate, description, price, brand, detail_product) => ({
+    type: 'POST_PRODUCT', title, rate, description, price, brand,  detail_product
 })
 
-export const addProduct = (title, description, brand, price, detail_product) => ({
-    type: 'ADD_PRODUCT', title, description, brand, price, detail_product
+export const addProduct = (title, rate, description, price, brand, detail_product) => ({
+    type: 'ADD_PRODUCT', title, rate, description, price, brand, detail_product
 })
 
 // end add Product data

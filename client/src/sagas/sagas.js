@@ -9,6 +9,8 @@ const request = axios.create({
     baseURL: API_URL,
     timeout: 1000
 });
+const PATH = 'barang';
+
 
 const read = async (path) =>
     await request.get(path)
@@ -17,18 +19,17 @@ const read = async (path) =>
 
 
 const add = async (path, params) =>
-    await request.add(path, params)
+    await request.post(path, params)
         .then(response => response.data)
         .catch(err => err);
 
-const PATH = 'barang';
 
 function* loadProduct() {
 
     try {
         const data = yield call(read, PATH);
         yield put(actions.loadProductSuccess(data));
-        console.log(data,'ini dataaaaaaaa')
+        // console.log(data,'ini dataaaaaaaa')
     } catch (error) {
         console.log(error);
         yield put(actions.loadProductFailure());
@@ -36,15 +37,17 @@ function* loadProduct() {
 }
 
 function* addProduct(payload) {
-    const {id, title, description, brand, price, detail_product } = payload;
-    yield put(actions.addProductRedux( title, description, brand, price, detail_product))
+    const { title, rate, description, brand, price, detail_product } = payload;
+    // console.log(payload, 'ini tambah data yes')
+    yield put(actions.addProductRedux(title, parseInt(rate), description, price, parseInt(brand), detail_product))
     try {
-        const data = yield call(add, PATH, {title, description, brand, price, detail_product });
+        const data = yield call(add, PATH, { title, rate, description, price, brand, detail_product });
+        console.log(data,'ini add data')
         yield put(actions.addProductSuccess(data));
         history.push('/')
     } catch (error) {
         console.log(error);
-        yield put(actions.addProductFailure(id));
+        yield put(actions.addProductFailure());
     }
 }
 

@@ -12,7 +12,28 @@ module.exports = {
             .then((product) => res.status(200).send(product))
             .catch((error) => { res.send(error); });
     },
+
+    getById(req, res) {
+        return product
+            .findByPk(req.params.id, {
+                include: [],
+                order: [
+                    ['createdAt', 'DESC'],
+                ],
+            })
+            .then((product) => {
+                if (!product) {
+                    return res.status(404).send({
+                        message: 'product Not Found',
+                    });
+                }
+                return res.status(200).send(product);
+            })
+            .catch((error) => res.send(error));
+    },
+
     add(req, res) {
+        console.log(req.body,'ini isi data')
         return product
             .create({
                 title: req.body.title,
@@ -25,6 +46,7 @@ module.exports = {
             .then((product) => res.status(200).send(product))
             .catch((error) => res.send(error));
     },
+
     update(req, res) {
         return product
             .findByPk(req.params.id)
@@ -48,6 +70,7 @@ module.exports = {
             })
             .catch((error) => res.send(error));
     },
+
     delete(req, res) {
         return product
             .findByPk(req.params.id)

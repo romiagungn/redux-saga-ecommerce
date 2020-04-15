@@ -26,7 +26,7 @@ export default function Item(props) {
                         </span>
                     </div>
                     <div className="card-body d-flex flex-column">
-                        <p className="card-text" style={{ fontSize: '2vh' }}>{props.product.description}.</p>
+                        <p className="card-text" style={{ fontSize: '1.5vh' }}>{props.product.description}.</p>
                         <strong style={{ fontSize: '3vh' }} className="my-2 mt-auto align-self-end">Rp. {props.product.price},-</strong>
                         <Link to="/detail">
                             <div className="d-flex flex-column">
