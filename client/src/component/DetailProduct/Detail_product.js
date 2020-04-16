@@ -3,62 +3,130 @@ import $ from "jquery";
 
 export default class Detail extends Component {
     componentDidMount() {
-        $("#tile-1 .nav-tabs a").click(function () {
-            var position = $(this).parent().position();
-            var width = $(this).parent().width();
-            $("#tile-1 .slider").css({ "left": + position.left, "width": width });
+        $('.color-choose input').on('click', function () {
+            var headphonesColor = $(this).attr('data-image');
+
+            $('.active').removeClass('active');
+            $('.left-column img[data-image = ' + headphonesColor + ']').addClass('active');
+            $(this).addClass('active');
         });
-        var actWidth = $("#tile-1 .nav-tabs").find(".active").parent("li").width();
-        var actPosition = $("#tile-1 .nav-tabs .active").position();
-        $("#tile-1 .slider").css({ "left": + actPosition.left, "width": actWidth });
     }
 
 
     render() {
         return (
             <div className="container">
-                <div className="card my-5">
-                    <div className="card-header text-center bg-dark">
-                        Detail Product
+
+                <div className="left-column">
+                    <img data-image="black" src="images/black.png" alt="" />
+                    <img data-image="blue" src="images/blue.png" alt="" />
+                    <img data-image="red" className="active" src="images/red.png" alt="" />
                 </div>
 
-                    <div className="card-body">
-                        <div className="wrapper">
-                            <div className="product-img">
-                                <img src="http://bit.ly/2tMBBTd" height="420" width="327" />
-                            </div>
-                            <div className="product-info">
-                                <div className="product-text">
-                                    <h1>Harvest Vase</h1>
-                                    <h2>by studio and friends</h2>
-                                    <h4>Rp. 13.000.000</h4>
-                                    <p>Harvest Vases are a reinterpretation of peeled fruits and vegetables as functional objects. The surfaces appear to be sliced and pulled aside, allowing room for growth. </p>
+
+                {/* <div className="right-column">
+
+                    <div className="product-description">
+                        <span>Headphones</span>
+                        <h1>Beats EP</h1>
+                        <p>The preferred choice of a vast range of acclaimed DJs. Punchy, bass-focused sound and high isolation. Sturdy headband and on-ear cushions suitable for live performance</p>
+                    </div>
+
+                    <div className="product-configuration">
+
+                        <div className="product-color">
+                            <span>Color</span>
+
+                            <div className="color-choose">
+                                <div>
+                                    <input data-image="red" type="radio" id="red" name="color" value="red" />
+                                    <label htmlFor="red"><span></span></label>
                                 </div>
-                                <div className="product-price-btn">
-                                    <button type="button" className="mt-3">buy now</button>
+                                <div>
+                                    <input data-image="blue" type="radio" id="blue" name="color" value="blue" />
+                                    <label htmlFor="blue"><span></span></label>
+                                </div>
+                                <div>
+                                    <input data-image="black" type="radio" id="black" name="color" value="black" />
+                                    <label htmlFor="black"><span></span></label>
                                 </div>
                             </div>
+
+                        </div>
+
+                        <div className="cable-config">
+                            <span>Cable configuration</span>
+
+                            <div className="cable-choose">
+                                <button>Straight</button>
+                                <button>Coiled</button>
+                                <button>Long-coiled</button>
+                            </div>
+
+                            <a href="#">How to configurate your headphones</a>
                         </div>
                     </div>
 
-                    <div className="tile" id="tile-1">
-                        <ul className="nav nav-tabs nav-justified" role="tablist">
-                            <div className="slider"></div>
-                            <li className="nav-item">
-                                <a className="nav-link active" id="home-tab" data-toggle="tab" href="/" role="tab" aria-controls="home" aria-selected="true"><i className="fas fa-home"></i> Home</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"><i className="fas fa-id-card"></i> Profile</a>
-                            </li>
-                        </ul>
+                    <div className="product-price">
+                        <span>148$</span>
+                        <a href="#" className="cart-btn">Add to cart</a>
+                    </div>
+                </div>
+                <div className="left-column">
+                    <img data-image="black" src="images/black.png" alt="" />
+                    <img data-image="blue" src="images/blue.png" alt="" />
+                    <img data-image="red" className="active" src="images/red.png" alt="" />
+                </div>
 
-                        <div className="tab-content">
-                            <div className="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">SADASDDSASADSDASDA</div>
-                            <div className="tab-pane fade" id="a" role="tabpanel" aria-labelledby="profile-tab">Profile</div>
+
+                <div className="right-column">
+
+                    <div className="product-description">
+                        <span>Headphones</span>
+                        <h1>Beats EP</h1>
+                        <p>The preferred choice of a vast range of acclaimed DJs. Punchy, bass-focused sound and high isolation. Sturdy headband and on-ear cushions suitable for live performance</p>
+                    </div>
+
+                    <div className="product-configuration">
+
+                        <div className="product-color">
+                            <span>Color</span>
+
+                            <div className="color-choose">
+                                <div>
+                                    <input data-image="red" type="radio" id="red" name="color" value="red" />
+                                    <label htmlFor="red"><span></span></label>
+                                </div>
+                                <div>
+                                    <input data-image="blue" type="radio" id="blue" name="color" value="blue" />
+                                    <label htmlFor="blue"><span></span></label>
+                                </div>
+                                <div>
+                                    <input data-image="black" type="radio" id="black" name="color" value="black" />
+                                    <label htmlFor="black"><span></span></label>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div className="cable-config">
+                            <span>Cable configuration</span>
+
+                            <div className="cable-choose">
+                                <button>Straight</button>
+                                <button>Coiled</button>
+                                <button>Long-coiled</button>
+                            </div>
+
+                            <a href="#">How to configurate your headphones</a>
                         </div>
                     </div>
 
-                </div>
+                    <div className="product-price">
+                        <span>148$</span>
+                        <a href="#" className="cart-btn">Add to cart</a>
+                    </div> */}
+                {/* </div> */}
             </div>
         );
     }

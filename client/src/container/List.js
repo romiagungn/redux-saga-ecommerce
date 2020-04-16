@@ -10,7 +10,7 @@ class List extends Component {
     }
 
     render() {
-        // console.log(this.props.data, 'ini item loh')
+        console.log(this.props.data, 'ini item loh')
         const listItems = this.props.data.map((item, index) => {
             // console.log(item, 'ini item aaaaaaaaaaaaaa')
             return (

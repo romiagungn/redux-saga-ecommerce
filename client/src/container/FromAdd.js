@@ -49,10 +49,9 @@ class FromAdd extends Component {
     }
 
     handleSubmit(event) {
-        if(this.state.title && this.state.rate && this.state.description && this.state.price  && this.state.brand && this.state.detail_product){ 
+        
         this.props.add(this.state.title, this.state.rate, this.state.description, this.state.price, this.state.brand, this.state.detail_product)
         this.setState({ title: "", rate: "", description: "", price: "", brand: "", detail_product: "" });
-        }
         event.preventDefault();
     }
 
@@ -114,7 +113,7 @@ class FromAdd extends Component {
                                 </div>
                             </div>
 
-                            <button className="btn btn-success" type="submit" >
+                            <button className="btn btn-success" type="submit" value="Submit">
                                 <i className="fa fa-save mr-sm-2"></i>Save
                             </button>
 

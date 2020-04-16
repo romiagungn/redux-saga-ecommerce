@@ -45,11 +45,11 @@ function* loadProduct() {
 function* addProduct(payload) {
     const { title, rate, description, brand, price, detail_product } = payload;
     let id = Date.now()
-    // console.log(payload, 'ini tambah data yes')
     yield put(actions.addProductRedux(id, title, rate, description, price, brand, detail_product))
+    // console.log(payload.addProductRedux, 'ini tambah data yes')
     try {
         const data = yield call(add, PATH, {id, title, rate, description, price, brand, detail_product});
-        console.log(data, 'ini add data')
+        // console.log(data, 'ini add data')
         yield put(actions.addProductSuccess(data));
         history.push('/')
     } catch (error) {
