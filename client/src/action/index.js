@@ -1,7 +1,7 @@
 // start Product todo data
-export const loadProductSuccess = (product) => ({
+export const loadProductSuccess = (products) => ({
     type: 'LOAD_PRODUCT_SUCCESS',
-    product
+    products
 })
 
 export const loadProductFailure = () => ({
@@ -21,12 +21,13 @@ export const addProductSuccess = (product) => ({
     product
 })
 
-export const addProductFailure = () => ({
-    type: 'POST_PRODUCT_FAILURE'
+export const addProductFailure = (id) => ({
+    type: 'POST_PRODUCT_FAILURE',
+    id
 })
 
-export const addProductRedux = (title, rate, description, price, brand, detail_product) => ({
-    type: 'POST_PRODUCT', title, rate, description, price, brand,  detail_product
+export const addProductRedux = (id, title, rate, description, price, brand, detail_product) => ({
+    type: 'POST_PRODUCT', id, title, rate, description, price, brand, detail_product
 })
 
 export const addProduct = (title, rate, description, price, brand, detail_product) => ({
@@ -34,3 +35,24 @@ export const addProduct = (title, rate, description, price, brand, detail_produc
 })
 
 // end add Product data
+
+// start delete Product data
+
+export const deleteProductRedux = (id) => ({
+    type: 'DELETE_PRODUCT', id
+})
+
+export const deleteProductSuccess = (product) => ({
+    type: 'DELETE_PRODUCT_SUCCESS',
+    product
+})
+
+export const deleteProductFailure = () => ({
+    type: 'DELETE_PRODUCT_FAILURE'
+})
+
+export const deleteProduct = (id) => ({
+    type: 'REMOVE_PRODUCT', id
+})
+
+// end delete Product data

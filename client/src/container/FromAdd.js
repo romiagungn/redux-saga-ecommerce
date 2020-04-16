@@ -49,8 +49,10 @@ class FromAdd extends Component {
     }
 
     handleSubmit(event) {
+        if(this.state.title && this.state.rate && this.state.description && this.state.price  && this.state.brand && this.state.detail_product){ 
         this.props.add(this.state.title, this.state.rate, this.state.description, this.state.price, this.state.brand, this.state.detail_product)
         this.setState({ title: "", rate: "", description: "", price: "", brand: "", detail_product: "" });
+        }
         event.preventDefault();
     }
 

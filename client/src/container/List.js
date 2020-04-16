@@ -10,10 +10,21 @@ class List extends Component {
     }
 
     render() {
-        console.log(this.props.data, 'ini item loh')
-        const listItems = this.props.data.map((item, index) => 
-            <Item key={index} product={{ ...item }} />
-        );
+        // console.log(this.props.data, 'ini item loh')
+        const listItems = this.props.data.map((item, index) => {
+            // console.log(item, 'ini item aaaaaaaaaaaaaa')
+            return (
+                <Item key={index}
+                    id= {item.id}
+                    title={item.title}
+                    rate={item.rate}
+                    description={item.description}
+                    price={item.price}
+                    brand={item.brand}
+                    detail={item.detail_product}
+                />
+            )
+        })
 
         return (
             <Fragment>
