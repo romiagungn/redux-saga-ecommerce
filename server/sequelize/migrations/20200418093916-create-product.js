@@ -15,16 +15,16 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       description: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       price: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       brand: {
         type: Sequelize.STRING
       },
       detail_product: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       colors: {
         type: Sequelize.STRING

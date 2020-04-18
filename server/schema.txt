@@ -1,1 +1,1 @@
-node_modules/.bin/sequelize model:create --name product --attributes "title:string, rate:integer, description:string, price:integer, brand:string, detail_product:string, colors:string, capacities:string, file:string"
+node_modules/.bin/sequelize model:create --name product --attributes "title:string, rate:integer, description:text, price:string, brand:string, detail_product:text, colors:string, capacities:string, file:string"
