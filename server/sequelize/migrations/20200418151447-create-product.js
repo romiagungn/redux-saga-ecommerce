@@ -27,10 +27,10 @@ module.exports = {
         type: Sequelize.TEXT
       },
       colors: {
-        type: Sequelize.STRING
+        type: Sequelize.JSON
       },
       capacities: {
-        type: Sequelize.STRING
+        type: Sequelize.JSON
       },
       file: {
         type: Sequelize.STRING
