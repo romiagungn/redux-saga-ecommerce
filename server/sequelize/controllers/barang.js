@@ -1,4 +1,4 @@
-const product = require('../models').barang;
+const product = require('../models').product;
 
 module.exports = {
     list(req, res) {
@@ -33,7 +33,7 @@ module.exports = {
     },
 
     add(req, res) {
-        console.log(req.body,'ini isi data')
+        console.log(req.body, 'ini isi data')
         return product
             .create({
                 title: req.body.title,
@@ -41,7 +41,10 @@ module.exports = {
                 description: req.body.description,
                 price: req.body.price,
                 brand: req.body.brand,
-                detail_product: req.body.detail_product
+                detail_product: req.body.detail_product,
+                colors: req.body.colors,
+                capacities: req.body.capacities,
+                file: req.body.file
             })
             .then((product) => res.status(200).send(product))
             .catch((error) => res.send(error));
@@ -64,6 +67,9 @@ module.exports = {
                         price: req.body.price || product.price,
                         brand: req.body.brang || product.brand,
                         detail_product: req.body.detail_product || product.detail_product,
+                        colors: req.body.colors || product.colors, 
+                        capacities: req.body.capacities || product.capacities,
+                        file: req.body.file || product.file
                     })
                     .then((product) => res.status(200).send(product))
                     .catch((error) => res.send(error));
