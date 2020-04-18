@@ -17,31 +17,22 @@ const product = (state = [], action) => {
             return action.products.sort(compare)
 
         case 'POST_PRODUCT':
-            // console.log(state.product,'ini post product')
+            // console.log(state.action,'ini post product')
             return [
                 ...state,
                 {
-                    id: action.id,
                     title: action.title,
+                    rate:action.rate,
                     description: action.description,
-                    brand: action.brand,
                     price: action.price,
-                    detail: action.detail
+                    brand: action.brand,
+                    detail_product: action.detail_product,
+                    colors: action.colors,
+                    capacities: action.capacities,
+                    file: action.file,
                 }
             ]
-
-        // change state to object type
-        // case 'POST_PRODUCT':
-        //     console.log(action, 'ini add product')
-        //     return Object.assign({}, state, {
-        //         id: action.id,
-        //         title: action.title,
-        //         description: action.description,
-        //         brand: action.brand,
-        //         price: action.price,
-        //         detail: action.detail,
-        //     })
-
+            
         case 'POST_PRODUCT_SUCCESS':
             return state.map((item) => {
                 return item

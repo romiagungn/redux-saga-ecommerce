@@ -26,12 +26,15 @@ export const addProductFailure = (id) => ({
     id
 })
 
-export const addProductRedux = (id, title, rate, description, price, brand, detail_product) => ({
-    type: 'POST_PRODUCT', id, title, rate, description, price, brand, detail_product
+export const addProductRedux = (id, title, rate, description, price, brand, detail_product, colors, capacities, file) => ({
+    type: 'POST_PRODUCT', id, title, rate, description, price, brand, detail_product,
+    ...(colors instanceof Array && { colors: JSON.stringify(colors) }),
+    ...(capacities instanceof Array && { capacities: JSON.stringify(capacities) }),
+    ...(file && { file })
 })
 
-export const addProduct = (title, rate, description, price, brand, detail_product) => ({
-    type: 'ADD_PRODUCT', title, rate, description, price, brand, detail_product
+export const addProduct = (title, rate, description, price, brand, detail_product, colors, capacities, file) => ({
+    type: 'ADD_PRODUCT', title, rate, description, price, brand, detail_product, colors, capacities, file
 })
 
 // end add Product data

@@ -23,7 +23,7 @@ const add = async (path, params) =>
         .then(response => response.data)
         .catch(err => err);
 
-const remove = async (path) => 
+const remove = async (path) =>
     // console.log(path,'aaaaaaaaaaaaaaaaaaaaa')
     await request.delete(path)
         .then(response => response.data)
@@ -43,13 +43,17 @@ function* loadProduct() {
 }
 
 function* addProduct(payload) {
-    const { title, rate, description, brand, price, detail_product } = payload;
+    const { title, rate, description, price, brand, detail_product, colors, capacities, file } = payload;
     let id = Date.now()
-    yield put(actions.addProductRedux(id, title, rate, description, price, brand, detail_product))
+    yield put(actions.addProductRedux(id, title, rate, description, price, brand, detail_product, colors, capacities, file))
     // console.log(payload.addProductRedux, 'ini tambah data yes')
     try {
-        const data = yield call(add, PATH, {id, title, rate, description, price, brand, detail_product});
-        // console.log(data, 'ini add data')
+        const data = yield call(add, PATH, { id, title, rate, description, price, brand, detail_product,
+            ...(colors instanceof Array && { colors: JSON.stringify(colors) }),
+            ...(capacities instanceof Array && { capacities: JSON.stringify(capacities) }),
+            ...(file && { file })
+        });
+        console.log(data, 'ini add data')
         yield put(actions.addProductSuccess(data));
         history.push('/')
     } catch (error) {

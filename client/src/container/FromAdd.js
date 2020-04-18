@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addProduct } from '../action';
+import Upload from './addForm/Upload'
 
 class FromAdd extends Component {
 
@@ -49,7 +50,7 @@ class FromAdd extends Component {
     }
 
     handleSubmit(event) {
-        
+
         this.props.add(this.state.title, this.state.rate, this.state.description, this.state.price, this.state.brand, this.state.detail_product)
         this.setState({ title: "", rate: "", description: "", price: "", brand: "", detail_product: "" });
         event.preventDefault();
@@ -58,9 +59,9 @@ class FromAdd extends Component {
     render() {
         // console.log(this.state, 'ini props')
         return (
-            <div className="container pt-4">
+            <div className="container pt-4 pb-3">
                 <div className="card shadow">
-                    <div className="card-body">
+                    <div className="card-body pt-3 pb-3">
                         <h5 className="mb-0">
                             Add New Product
                     </h5>
@@ -111,6 +112,10 @@ class FromAdd extends Component {
                                 <div className="col-sm-10">
                                     <textarea className="form-control" name="detail-product" rows="3" value={this.state.detail_product} onChange={this.handleChangeDetail}></textarea>
                                 </div>
+                            </div>
+
+                            <div className="form-group row">
+                                <Upload />
                             </div>
 
                             <button className="btn btn-success" type="submit" value="Submit">
