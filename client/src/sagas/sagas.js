@@ -46,9 +46,10 @@ function* addProduct(payload) {
     const { title, rate, description, price, brand, detail_product, colors, capacities, file } = payload;
     let id = Date.now()
     yield put(actions.addProductRedux(id, title, rate, description, price, brand, detail_product, colors, capacities, file))
-    // console.log(payload.addProductRedux, 'ini tambah data yes')
+    console.log('filename', file);
     try {
-        const data = yield call(add, PATH, { id, title, rate, description, price, brand, detail_product,
+        const data = yield call(add, PATH, {
+            id, title, rate, description, price, brand, detail_product,
             ...(colors instanceof Array && { colors: JSON.stringify(colors) }),
             ...(capacities instanceof Array && { capacities: JSON.stringify(capacities) }),
             ...(file && { file })
@@ -57,7 +58,7 @@ function* addProduct(payload) {
         yield put(actions.addProductSuccess(data));
         history.push('/')
     } catch (error) {
-        console.log(error);
+        console.log(error, 'erorrrrrrrrrrrrrrr');
         yield put(actions.addProductFailure(id));
     }
 }

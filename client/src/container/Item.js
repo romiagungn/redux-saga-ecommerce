@@ -1,6 +1,7 @@
 import React, { Fragment, Component } from 'react';
 import { Link } from 'react-router-dom';
 import StarRatings from 'react-star-ratings';
+import { ToggleButtonGroup, ToggleButton, ButtonToolbar } from 'react-bootstrap'
 import { deleteProduct } from '../action'
 import { connect } from 'react-redux';
 // import CurrencyFormat from 'react-currency-format';
@@ -46,7 +47,7 @@ class Item extends Component {
                         </div>
                     </div>
                 </div>
-            </Fragment>
+            </Fragment >
         );
     }
 }

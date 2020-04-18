@@ -17,7 +17,7 @@ const product = (state = [], action) => {
             return action.products.sort(compare)
 
         case 'POST_PRODUCT':
-            // console.log(state.action,'ini post product')
+            // console.log(action.file,'ini post product')
             return [
                 ...state,
                 {

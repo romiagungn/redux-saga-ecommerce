@@ -76,7 +76,7 @@ class FormAdd extends React.Component {
             this.state.detail_product,
             this.state.colors,
             this.state.capacities,
-            // this.state.file
+            this.state.file
         )
         this.setState({
             title: '',
@@ -88,7 +88,7 @@ class FormAdd extends React.Component {
             colors: ['#fff'],
             capacities: [],
             displaypicker: [false],
-            // file: {}
+            file: {}
         })
     }
 
@@ -179,8 +179,8 @@ class FormAdd extends React.Component {
             { name: 'brand', type: 'text', label: 'Brand', value: brand },
             { name: 'detail_product', type: 'textarea', label: 'Detail', value: detail_product },
             this.selectCapacities(),
-            { type: 'color' },
-            { type: 'file' }
+            { name: 'colors', type: 'color', value: 'colors' },
+            { name:'file', type: 'file', value:'file'}
         ]
 
         const styles = reactCSS({

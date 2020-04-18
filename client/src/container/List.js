@@ -22,6 +22,8 @@ class List extends Component {
                     price={item.price}
                     brand={item.brand}
                     detail={item.detail_product}
+                    colors={item.colors}
+                    capacities={item.capacities}
                 />
             )
         })
