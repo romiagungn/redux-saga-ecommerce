@@ -46,15 +46,25 @@ function* addProduct(payload) {
     const { title, rate, description, price, brand, detail_product, colors, capacities, file } = payload;
     let id = Date.now()
     yield put(actions.addProductRedux(id, title, rate, description, price, brand, detail_product, colors, capacities, file))
-    console.log('filename', file);
+    // console.log('filename', file);
     try {
-        const data = yield call(add, PATH, {
+        let itemSent = {
             id, title, rate, description, price, brand, detail_product,
             ...(colors instanceof Array && { colors: JSON.stringify(colors) }),
             ...(capacities instanceof Array && { capacities: JSON.stringify(capacities) }),
             ...(file && { file })
+        }
+        const formData = new FormData();
+        Object.keys(itemSent).forEach(key => {
+            formData.append(key, itemSent[key])
+        })
+
+        const data = yield call(add, PATH, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
         });
-        console.log(data, 'ini add data')
+        console.log(itemSent, 'ini add data')
         yield put(actions.addProductSuccess(data));
         history.push('/')
     } catch (error) {

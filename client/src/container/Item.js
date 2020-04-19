@@ -1,24 +1,22 @@
 import React, { Fragment, Component } from 'react';
 import { Link } from 'react-router-dom';
 import StarRatings from 'react-star-ratings';
-import { ToggleButtonGroup, ToggleButton, ButtonToolbar } from 'react-bootstrap'
 import { deleteProduct } from '../action'
 import { connect } from 'react-redux';
+// import { ToggleButtonGroup, ToggleButton, ButtonToolbar } from 'react-bootstrap'
 // import CurrencyFormat from 'react-currency-format';
 
 class Item extends Component {
+
     render() {
         return (
             <Fragment>
                 <div className="col-md-3">
-                    <div className="card">
-                        <img className="card-img-top" src="https://images.unsplash.com/photo-1458724338480-79bc7a8352e4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="Card image cap" />
+                    <div className="card pb-2">
+                        <img className="card-img-top card-max" src={this.props.file} alt="Card image cap" />
                         <div className="card-body d-flex flex-column pt-2">
-                            <h5 className="card-title">{this.props.title}<img className="card-img"
-                                src="http://clipart-library.com/new_gallery/98-985509_5-stars-transparent-google-review-logo.png"
-                                width="10" height="50" alt="" /></h5>
+                            <h5 className="card-title">{this.props.title}</h5>
                             <h6 className="my-2 mt-auto align-self"> {this.props.brand} </h6>
-                            {/* <CurrencyFormat value={this.props.price} displayType={'text'} thousandSeparator={true} prefix={'Rp.'} renderText={value => <strong style={{ fontSize: '3vh' }} className="my-2 mt-auto align-self-start">{value}</strong>} /> */}
                             <strong style={{ fontSize: '3vh' }} className="my-2 mt-auto align-self-start">{this.props.price}</strong>
                         </div>
                         <div className="d-flex col-auto text-left" height="20">

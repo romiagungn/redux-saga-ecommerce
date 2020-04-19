@@ -24,6 +24,11 @@ code {
   padding-top: 0%;
 }
 
+.card-max {
+  max-height: 142px;
+  align-items: center;
+}
+
 /* jumbotron header  */
 
 .jumbotron {

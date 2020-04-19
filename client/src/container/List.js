@@ -24,6 +24,7 @@ class List extends Component {
                     detail={item.detail_product}
                     colors={item.colors}
                     capacities={item.capacities}
+                    file={item.file}
                 />
             )
         })

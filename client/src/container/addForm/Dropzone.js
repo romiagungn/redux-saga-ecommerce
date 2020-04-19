@@ -40,7 +40,7 @@ export default class Dropzone extends Component {
         if (this.props.disabled) return;
         const file = event.target.files;
         // console.log(this.props)
-        // console.log(file);
+        // console.log(file,'aaaaaaaaaa');
         if (this.props.onFilesAdded) {
             this.props.onFilesAdded(file[0])
         }
@@ -57,6 +57,7 @@ export default class Dropzone extends Component {
                     ref={this.fileInputRef}
                     className="FileInput"
                     type="file"
+                    name="file"
                     multiple
                     onChange={this.onFilesAdded}
                 />
