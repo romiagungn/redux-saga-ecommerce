@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var models = require('../sequelize/models/index');
 const path = require("path");
-const serverSite = "http://localhost:3001";
+// const serverSite = "http://localhost:3001";
 // const barangController = require('../sequelize/controllers').barang;
 
 /* GET home page. */
@@ -32,13 +32,13 @@ router.get("/:id", (req, res, next) => {
 
 router.post("/", (req, res, next) => {
     let { title, rate, description, price, brand, detail_product, colors, capacities } = req.body
-    // console.log('body api', req.body);
-    // console.log('files api', req.files);
-    // let { file } = req.files
-    // let filename = file.name.toLowerCase().replace("", Date.now()).split(' ').join('-');
-    // console.log(filename, 'aaaaaaaaa');
-    // file.mv(path.join(__dirname, '..', 'public', 'images', filename), err => {
-    // if (err) console.log(err);
+    console.log('body api', req.body);
+    console.log('files api', req.files);
+    let { file } = req.files
+    let filename = file.name.toLowerCase().replace("", Date.now()).split(' ').join('-');
+    console.log(filename, 'aaaaaaaaa');
+    file.mv(path.join(__dirname, '..', 'public', 'images', filename), err => {
+    if (err) console.log(err);
     models.product
         .create({
             title,
@@ -49,12 +49,12 @@ router.post("/", (req, res, next) => {
             detail_product,
             ...(capacities && { capacities: JSON.parse(capacities) }),
             ...(colors && { colors: JSON.parse(colors) }),
-            // file: '/images/' + filename
+            file: 'http://localhost:3000/images/' + filename
         })
         .then(product =>
             res.json({
                 error: false,
-                itemAdded: product
+                itemAdd: product,
                 // itemAdded: { ...product, filename: serverSite + product.filename }
             })
         )
@@ -62,7 +62,7 @@ router.post("/", (req, res, next) => {
             error: true, message: err
         }));
 })
-// });
+});
 
 // delete a single todo
 router.delete('/:id', (req, res, next) => {
