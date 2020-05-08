@@ -266,9 +266,9 @@ class FormAdd extends React.Component {
                             <form onSubmit={this.handleSubmit} encType="multipart/form-data">
                                 {item}
                                 <div className="form-group col-md-4 my-5">
-                                    <button type="submit" className="btn btn-success mr-2"><i className="fas fa-check"></i> Save</button>
+                                    <button type="submit" className="btn btn-dark mr-2"><i className="fas fa-check"></i> Save</button>
                                     {/* <button href="/" type="button" className="btn btn-danger"> <i className="fas fa-undo"></i> Cancel</button> */}
-                                    <Button className="text-center" variant="outline-danger" type="button" href="/"><i className="fas fa-undo"></i> Cancel</Button>
+                                    <Button className="text-center" variant="outline-dark" type="button" href="/"><i className="fas fa-undo"></i> Cancel</Button>
                                 </div>
                             </form>
                         </div>

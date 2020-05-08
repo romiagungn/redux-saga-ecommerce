@@ -31,7 +31,7 @@ class List extends Component {
 
         return (
             <Fragment>
-                <div className="container">
+                <div>
                     <Link to="/add" className="no-underline">
                         <div className="wrap">
                             <button className="button btn-block">Add Product</button>
