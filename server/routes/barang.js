@@ -85,6 +85,7 @@ router.put('/:id', (req, res) => {
         res.json({
             status: 'SUCCESS',
             productData: item,
+            statuss : console.log('SUCCESS')
         })
     }).catch(err => {
         res.json({

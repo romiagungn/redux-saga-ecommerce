@@ -1,12 +1,27 @@
 import React, { Fragment, Component } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import StarRatings from 'react-star-ratings';
-import { deleteProduct } from '../action'
+import { deleteProduct } from '../action';
+import { loadProductDetail } from '../action';
 import { connect } from 'react-redux';
 // import { ToggleButtonGroup, ToggleButton, ButtonToolbar } from 'react-bootstrap'
 // import CurrencyFormat from 'react-currency-format';
 
 class Item extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            color: '',
+            storage: '',
+        };
+    }
+
+    getDetail() {
+        console.log(this.props,'aaaaaaaaaaa');
+        
+        this.props.loadProductDetail(this.props.id);
+    }
 
     render() {
         return (
@@ -35,15 +50,13 @@ class Item extends Component {
                             <p className="card-text" style={{ fontSize: '1.5vh' }}>{this.props.description}.</p>
                             <div className="d-flex flex-column mb-2">
                                 <button type="button" className="btn btn-dark mr-2 mt-auto" onClick={this.props.remove}>
-                                <i className="fas fa-trash mr-1"></i>
+                                    <i className="fas fa-trash mr-1"></i>
                                     Delete </button>
                             </div>
-                            <Link to="/detail" className="no-underline">
-                                <div className="d-flex flex-column ">
-                                    <button type="button" className="btn btn-dark mr-2 "><i className="fas fa-bars mr-1"></i>
+                            <div className="d-flex flex-column ">
+                                <button type="button" className="btn btn-dark mr-2 " onClick={this.getDetail.bind(this)}><i className="fas fa-bars mr-1"></i>
                                     Detail Item</button>
-                                </div>
-                            </Link>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -53,7 +66,8 @@ class Item extends Component {
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-    remove: () => dispatch(deleteProduct(ownProps.id))
+    remove: () => dispatch(deleteProduct(ownProps.id)),
+    loadProductDetail: (id) => dispatch(loadProductDetail(id))
 })
 
 export default connect(

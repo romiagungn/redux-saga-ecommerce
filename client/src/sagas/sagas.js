@@ -1,7 +1,9 @@
 import { all, takeEvery, put, call } from 'redux-saga/effects';
 import * as actions from '../action';
-import axios from 'axios'
-import history from '../history'
+import axios from 'axios';
+import history from '../history';
+import Swal from "sweetalert2";
+import { push } from "connected-react-router";
 
 const API_URL = 'http://localhost:3000/'
 
@@ -17,6 +19,10 @@ const read = async (path) =>
         .then((response) => response.data)
         .catch((err) => err);
 
+const detail = async (path) =>
+    await request.get(path)
+        .then((response) => response.data)
+        .catch((err) => err);
 
 const add = async (path, params) =>
     await request.post(path, params)
@@ -39,6 +45,25 @@ function* loadProduct() {
     } catch (error) {
         console.log(error);
         yield put(actions.loadProductFailure());
+    }
+}
+
+function* loadProductDetail(payload) {
+    const { id } = payload;
+    // console.log(response.data,'ini data');
+    try {
+        const data = yield call(detail, `${PATH}/${id}`);
+        yield put(actions.loadProductDetailSuccess(data));
+        history.push(`/detail/${id}`)
+    } catch (error) {
+        console.log(error);
+        yield put(actions.loadProductDetailFailure());
+        Swal.fire({
+            icon: 'error',
+            title: 'error',
+            showConfirmButton: false,
+            timer: 1500
+        })
     }
 }
 
@@ -90,6 +115,7 @@ function* deleteProduct(payload) {
 export default function* rootSaga() {
     yield all([
         takeEvery('LOAD_PRODUCTS', loadProduct),
+        takeEvery('LOAD_DETAIL', loadProductDetail),
         takeEvery('ADD_PRODUCT', addProduct),
         takeEvery('REMOVE_PRODUCT', deleteProduct)
     ]);

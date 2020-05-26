@@ -11,8 +11,22 @@ export const loadProductFailure = () => ({
 export const loadProduct = () => ({
     type: 'LOAD_PRODUCTS'
 })
-
 // end load Product data
+
+// START LOAD DETAIL
+export const loadProductDetailSuccess = (products) => ({
+    type: 'LOAD_DETAIL_SUCCESS', products
+})
+
+export const loadProductDetailFailure = () => ({
+    type: 'LOAD_DETAIL_FAILURE'
+})
+
+export const loadProductDetail = (id) => ({
+    type: 'LOAD_DETAIL', id
+})
+
+// END LOAD DETAIL
 
 // start add Product data
 
