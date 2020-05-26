@@ -38,8 +38,8 @@ router.post("/", (req, res, next) => {
     let filename = file.name.toLowerCase().replace("", Date.now()).split(' ').join('-');
     console.log(filename, 'aaaaaaaaa');
     file.mv(path.join(__dirname, '..', 'public', 'images', filename), err => {
-    if (err) console.log(err);
-    models.product.create({
+        if (err) console.log(err);
+        models.product.create({
             title,
             rate,
             description,
@@ -50,17 +50,43 @@ router.post("/", (req, res, next) => {
             ...(colors && { colors: JSON.parse(colors) }),
             file: 'http://localhost:3000/images/' + filename
         })
-        .then(product =>
-            res.json({
-                error: false,
-                itemAdd: product,
-                // itemAdded: { ...product, filename: serverSite + product.filename }
-            })
-        )
-        .catch(err => res.json({
-            error: true, message: err
-        }));
-})
+            .then(product =>
+                res.json({
+                    error: false,
+                    itemAdd: product,
+                    // itemAdded: { ...product, filename: serverSite + product.filename }
+                })
+            )
+            .catch(err => res.json({
+                error: true, message: err
+            }));
+    })
+});
+
+// update single todo
+router.put('/:id', function (req, res) {
+    let { vote, testimonials, rate } = req.body;
+    let changedItem = {};
+    vote ? changedItem.vote = vote : '';
+    rate ? changedItem.rate = rate : '';
+    testimonials ? changedItem.testimonials = JSON.parse(testimonials) : '';
+    models.product.findByPk( req.params.id, changedItem
+        ).then(item => {
+        vote ? item.vote = vote : '';
+        rate ? item.rate = rate : '';
+        testimonials ? item.testimonials = changedItem.testimonials : '';
+        res.json({
+            status: 'SUCCESS',
+            productData: item,
+        })
+    })
+    .catch(err => {
+        res.json({
+            status: 'FAILED',
+            message: 'Connection Error',
+            error: err
+        })
+    })
 });
 
 // delete a single todo
