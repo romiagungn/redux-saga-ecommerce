@@ -39,8 +39,7 @@ router.post("/", (req, res, next) => {
     console.log(filename, 'aaaaaaaaa');
     file.mv(path.join(__dirname, '..', 'public', 'images', filename), err => {
     if (err) console.log(err);
-    models.product
-        .create({
+    models.product.create({
             title,
             rate,
             description,

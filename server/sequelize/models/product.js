@@ -9,7 +9,9 @@ module.exports = (sequelize, DataTypes) => {
     detail_product: DataTypes.TEXT,
     colors: DataTypes.JSON,
     capacities: DataTypes.JSON,
-    file: DataTypes.STRING
+    file: DataTypes.STRING,
+    vote: DataTypes.INTEGER,
+    testimonials: DataTypes.JSON
   }, {});
   product.associate = function(models) {
     // associations can be defined here
