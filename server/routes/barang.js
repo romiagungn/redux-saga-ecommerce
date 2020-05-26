@@ -63,15 +63,22 @@ router.post("/", (req, res, next) => {
     })
 });
 
-// update single todo
-router.put('/:id', function (req, res) {
+// update single product
+router.put('/:id', (req, res) => {
     let { vote, testimonials, rate } = req.body;
     let changedItem = {};
     vote ? changedItem.vote = vote : '';
     rate ? changedItem.rate = rate : '';
     testimonials ? changedItem.testimonials = JSON.parse(testimonials) : '';
-    models.product.findByPk( req.params.id, changedItem
-        ).then(item => {
+    models.product.update({
+        rate: rate,
+        vote: vote,
+        testimonials: testimonials
+    }, {
+        where: {
+            id: req.params.id
+        }, changedItem
+    }).then(item => {
         vote ? item.vote = vote : '';
         rate ? item.rate = rate : '';
         testimonials ? item.testimonials = changedItem.testimonials : '';
@@ -79,15 +86,14 @@ router.put('/:id', function (req, res) {
             status: 'SUCCESS',
             productData: item,
         })
-    })
-    .catch(err => {
+    }).catch(err => {
         res.json({
             status: 'FAILED',
             message: 'Connection Error',
             error: err
         })
-    })
-});
+    });
+})
 
 // delete a single todo
 router.delete('/:id', (req, res, next) => {
