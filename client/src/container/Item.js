@@ -18,8 +18,7 @@ class Item extends Component {
     }
 
     getDetail() {
-        console.log(this.props,'aaaaaaaaaaa');
-        
+        // console.log(this.props,'aaaaaaaaaaa');
         this.props.loadProductDetail(this.props.id);
     }
 

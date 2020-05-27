@@ -5,7 +5,7 @@ import history from './history';
 import Box from './component/Box';
 // import FromAdd from './container/FromAdd';
 import FromAdd from './container/addForm/FormAdd';
-import Detail_product from './component/Detail_product'
+import Detail_product from './component/DetailProduct/Detail';
 
 export default function App() {
   return (

@@ -3,7 +3,6 @@ import * as actions from '../action';
 import axios from 'axios';
 import history from '../history';
 import Swal from "sweetalert2";
-import { push } from "connected-react-router";
 
 const API_URL = 'http://localhost:3000/'
 
@@ -45,6 +44,12 @@ function* loadProduct() {
     } catch (error) {
         console.log(error);
         yield put(actions.loadProductFailure());
+        Swal.fire({
+            icon: 'error',
+            title: 'error',
+            showConfirmButton: false,
+            timer: 1500
+        })
     }
 }
 
@@ -54,7 +59,7 @@ function* loadProductDetail(payload) {
     try {
         const data = yield call(detail, `${PATH}/${id}`);
         yield put(actions.loadProductDetailSuccess(data));
-        history.push(`/detail/${id}`)
+        history.push(`detail/${id}`)
     } catch (error) {
         console.log(error);
         yield put(actions.loadProductDetailFailure());
@@ -95,6 +100,12 @@ function* addProduct(payload) {
     } catch (error) {
         console.log(error, 'erorrrrrrrrrrrrrrr');
         yield put(actions.addProductFailure(id));
+        Swal.fire({
+            icon: 'error',
+            title: 'error',
+            showConfirmButton: false,
+            timer: 1500
+        })
     }
 }
 
@@ -109,6 +120,12 @@ function* deleteProduct(payload) {
     } catch (error) {
         console.log(error);
         yield put(actions.deleteProductFailure(id));
+        Swal.fire({
+            icon: 'error',
+            title: 'error',
+            showConfirmButton: false,
+            timer: 1500
+        })
     }
 }
 
